@@ -1,8 +1,21 @@
-<div class="container">
-    <h2>{{title}}</h2>
-    <div class="container-content">
-        <input type="text" placeholder="Honnan"/>
-        <input type="text" placeholder="Hova"/>
-        <button>Keresés</button>
-    </div>
+<div class="content">
+    <img class="illustration" src="images/illustration.png">
+    <mat-card>
+        <mat-card-header>
+            <h1>Foglaljon buszjegyet egyszerűen az <span class="company-name">ngTravel</span> segítségével</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <form>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Honnan?">
+                    <mat-icon matSuffix class="material-symbols-outlined">line_start_circle</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input matInput placeholder="Hova?">
+                    <mat-icon matSuffix class="material-symbols-outlined">line_end_circle</mat-icon>
+                </mat-form-field>
+                <button mat-flat-button class="search-btn">Keresés</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

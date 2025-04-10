@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat; 
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', 'Arial';
+    margin: 0;
+}
+
+html, body { height: 100%; }
+
+html {
+    // TODO: változtatni 'light dark' - ?
+    color-scheme: light;
+    @include mat.theme (
+        (
+            color: (
+                primary: mat.$blue-palette
+            ),
+            typography: Roboto
+        )
+    );
+}

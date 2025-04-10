@@ -1,0 +1,32 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-toolbar .company-title {
+    font-weight: 700;
+    font-style: italic;
+    color: var(--mat-sys-primary);
+}
+
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+
+mat-toolbar span {
+    color: var(--mat-sys-on-surface);
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.cart-btn {
+    margin-left: 0.75rem;
+}
