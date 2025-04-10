@@ -1,9 +1,9 @@
 .content {
-    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 3.5rem);
 }
 
 h1 {

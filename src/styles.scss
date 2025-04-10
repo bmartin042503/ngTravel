@@ -4,12 +4,12 @@
 
 * { box-sizing: border-box; }
 
-body {
+html, body { 
+    height: 100%;
     font-family: 'Roboto', 'Arial';
     margin: 0;
+    overflow: hidden;
 }
-
-html, body { height: 100%; }
 
 html {
     // TODO: változtatni 'light dark' - ?

@@ -1,0 +1,23 @@
+<div class="content">
+    <mat-card>
+        <mat-card-header>
+            <h1>Bejelentkezés</h1>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="login-content">
+                <form>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Felhasználónév</mat-label>
+                        <input matInput type="text">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Jelszó</mat-label>
+                        <input matInput type="password">
+                    </mat-form-field>
+                    <button mat-flat-button class="login-btn">Bejelentkezés</button>
+                </form>
+            </div>
+            <a [routerLink]="['/signup']" routerLinkActive="active">Nincs fiókod? Regisztrálj itt</a>
+        </mat-card-content>
+    </mat-card>
+</div>

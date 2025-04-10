@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { MenuComponent } from './shared/menu/menu.component';
 import { HomeComponent } from "./pages/home/home.component";
+import { CartComponent } from './pages/cart/cart.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,8 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet, 
+    RouterOutlet,
+    MenuComponent,
     HomeComponent,
+    CartComponent,
+    ScheduleComponent,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule
