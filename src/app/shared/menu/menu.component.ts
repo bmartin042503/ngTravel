@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,7 +8,6 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-menu',
   imports: [
     RouterLink,
-    RouterLinkActive,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule
@@ -17,5 +16,10 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './menu.component.scss'
 })
 export class MenuComponent {
+  @Input() isLoggedIn = false;
 
+  logout() {
+    localStorage.setItem('isLoggedIn', 'false');
+    window.location.href = '/home';
+  }
 }

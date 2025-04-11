@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,7 +19,13 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
-  ticket_from = new FormControl('');
-  ticket_to = new FormControl('');
+export class HomeComponent implements OnInit {
+  isLoggedIn = false;
+
+  destinationFrom = new FormControl('');
+  destinationTo = new FormControl('');
+
+  ngOnInit(): void {
+    this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  }
 }

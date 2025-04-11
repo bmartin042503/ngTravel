@@ -1,11 +1,17 @@
 export interface BusRoute {
-    id: number;
-    departure: string;
-    arrival: string;
-    departureTime: Date;
-    arrivalTime: Date;
-    seats: number;
-    availableSeats: number;
+    id: string;
+    routeNumber: number;
+    departure: {
+        location: string;
+        time: Date;
+    }
+    arrival: {
+        location: string;
+        time: Date;
+    }
+    seats: {
+        total: number;
+        reserved: number;
+    }
     price: number;
-    premiumPrice: number;
 }

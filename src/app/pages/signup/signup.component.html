@@ -6,9 +6,19 @@
         <mat-card-content>
             <div class="signup-content">
                 <form>
+                    <div class="name-fields">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Vezetéknév</mat-label>
+                            <input matInput type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Keresztnév</mat-label>
+                            <input matInput type="text">
+                        </mat-form-field>
+                    </div>
                     <mat-form-field appearance="outline">
-                        <mat-label>Felhasználónév</mat-label>
-                        <input matInput type="text">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput type="email">
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Jelszó</mat-label>
@@ -18,7 +28,7 @@
                         <mat-label>Jelszó megerősítése</mat-label>
                         <input matInput type="password">
                     </mat-form-field>
-                    <button mat-flat-button class="signup-btn">Regisztráció</button>
+                    <button mat-flat-button class="signup-btn" type="submit">Regisztráció</button>
                 </form>
             </div>
             <a [routerLink]="['/login']" routerLinkActive="active">Van már fiókod? Lépj be itt</a>

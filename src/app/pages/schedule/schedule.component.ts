@@ -14,11 +14,12 @@ import { ScheduleService } from '../../services/schedule.service';
 export class ScheduleComponent implements OnInit {
   routes: BusRoute[] = [];
   displayedColumns: string[] = [
-    'departure',
-    'arrival',
-    'departure-time',
-    'arrival-time',
-    'seats',
+    'route-number', 
+    'departure', 
+    'arrival', 
+    'departure-time', 
+    'arrival-time', 
+    'seats', 
     'price'
   ];
 
