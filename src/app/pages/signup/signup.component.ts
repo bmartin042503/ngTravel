@@ -62,6 +62,7 @@ export class SignupComponent {
       tickets: []
     }
     this.formErrorMessage = "";
+    localStorage.setItem("isLoggedIn", "true");
     console.log("Sikeres regisztráció!", registeredUser);
     window.location.href = "/home";
   }

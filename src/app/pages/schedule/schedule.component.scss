@@ -11,7 +11,19 @@ h1 {
 
 .schedule-content {
     margin: 0 2.5rem;
-    border-radius: 1rem;
     overflow-y: auto;
     max-height: 85%;
+}
+
+.back-btn {
+    margin: 1.25rem auto;
+    display: block;
+}
+
+.empty-schedule-label {
+    text-align: center;
+}
+
+.add-to-cart-btn {
+    padding: 0 1.5rem;
 }

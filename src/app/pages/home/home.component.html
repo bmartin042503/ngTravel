@@ -7,15 +7,31 @@
         <mat-card-content>
             <form>
                 <mat-form-field appearance="outline">
-                    <input matInput placeholder="Honnan?">
+                    <input matInput [matAutocomplete]="autoFrom" placeholder="Honnan?" [formControl]="locationFrom">
                     <mat-icon matSuffix class="material-symbols-outlined">line_start_circle</mat-icon>
+                    <mat-autocomplete #autoFrom="matAutocomplete">
+                        @for (location of locations; track location) {
+                            <mat-option [value]="location">
+                                {{ location }}
+                            </mat-option>
+                        }
+                    </mat-autocomplete>
                 </mat-form-field>
+                <!-- TODO: később, option városnevek szűrése, pl. input elemre (input)="filter()" (focus)="filter()" -->
                 <mat-form-field appearance="outline">
-                    <input matInput placeholder="Hova?">
+                    <input matInput [matAutocomplete]="autoTo" placeholder="Hova?" [formControl]="locationTo">
                     <mat-icon matSuffix class="material-symbols-outlined">line_end_circle</mat-icon>
+                    <mat-autocomplete #autoTo="matAutocomplete">
+                        @for (location of locations; track location) {
+                            <mat-option [value]="location">
+                                {{ location }}
+                            </mat-option>
+                        }
+                    </mat-autocomplete>
                 </mat-form-field>
-                <button mat-flat-button class="search-btn">Keresés</button>
             </form>
+            <!-- form-ban belül nem hívódik meg a search valamiért -->
+            <button mat-flat-button class="search-btn" (click)="search()">Keresés</button>
         </mat-card-content>
     </mat-card>
 </div>

@@ -362,12 +362,12 @@ export const SCHEDULE_DATA: BusRoute[] = [
     id: '21',
     routeNumber: 1022,
     departure: {
-      location: 'Salgótarján',
+      location: 'Szolnok',
       time: new Date('2025-04-22T07:00:00'),
     },
     arrival: {
-      location: 'Miskolc',
-      time: new Date('2025-04-22T09:30:00'),
+      location: 'Kecskemét',
+      time: new Date('2025-04-22T08:00:00'),
     },
     seats: {
       total: 25,
