@@ -1,4 +1,4 @@
-import { BusRoute } from "./models/BusRoute";
+import { BusRoute } from "../models/BusRoute";
 
 export const SCHEDULE_DATA: BusRoute[] = [
   {
@@ -377,18 +377,18 @@ export const SCHEDULE_DATA: BusRoute[] = [
   },
   {
     id: '22',
-    routeNumber: 1023,
+    routeNumber: 1022,
     departure: {
       location: 'Szolnok',
-      time: new Date('2025-04-22T13:00:00'),
+      time: new Date('2025-04-04T13:00:00'),
     },
     arrival: {
       location: 'Kecskemét',
-      time: new Date('2025-04-22T14:00:00'),
+      time: new Date('2025-04-05T14:00:00'),
     },
     seats: {
       total: 30,
-      reserved: 29,
+      reserved: 30,
     },
     price: 1900,
   }

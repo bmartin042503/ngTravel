@@ -59,7 +59,8 @@ export class SignupComponent {
       },
       email: this.signUpForm.value.email || '',
       password: this.signUpForm.value.password || '',
-      tickets: []
+      tickets: [],
+      transactions: []
     }
     this.formErrorMessage = "";
     localStorage.setItem("isLoggedIn", "true");

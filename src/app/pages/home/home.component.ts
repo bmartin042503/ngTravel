@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { SCHEDULE_DATA } from '../../shared/constants';
+import { SCHEDULE_DATA } from '../../shared/constants/busroutes';
 
 @Component({
   standalone: true,

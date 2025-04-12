@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { EasydatePipe } from '../../shared/pipes/easydate.pipe';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-schedule',
@@ -13,7 +15,9 @@ import { RouterLink } from '@angular/router';
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    RouterLink
+    RouterLink,
+    EasydatePipe,
+    NgClass
   ],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.scss'
@@ -51,5 +55,13 @@ export class ScheduleComponent implements OnInit {
         }
       });
     });
+  }
+
+  isExpired(route: BusRoute): boolean {
+    return new Date() > new Date(route.departure.time);
+  }
+
+  isNoAvailableSeats(route: BusRoute): boolean {
+    return route.seats.total - route.seats.reserved === 0;
   }
 }

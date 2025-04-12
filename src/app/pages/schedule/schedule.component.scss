@@ -13,6 +13,7 @@ h1 {
     margin: 0 2.5rem;
     overflow-y: auto;
     max-height: 85%;
+    border-radius: 0.75rem;
 }
 
 .back-btn {
@@ -26,4 +27,37 @@ h1 {
 
 .add-to-cart-btn {
     padding: 0 1.5rem;
+}
+
+.mat-column-price {
+    height: 5rem;
+}
+
+.expired {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.no-available-seats {
+    color: var(--mat-sys-error);
+}
+
+@media (max-width: 800px) {
+    .mat-column-route-number, .mat-column-seats {
+        display: none;
+    }
+    .schedule-content {
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .route-price {
+        display: none;
+    }
+
+    .cart-nav-icon {
+        margin: 0 auto;
+    }
 }

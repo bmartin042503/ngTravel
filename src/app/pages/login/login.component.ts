@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ export class LoginComponent {
   formErrorMessage: string = '';
 
   login() {
-    if (this.email.value === 'test@gmail.com' && this.password.value === '12345') {
+    if (this.email.value === 'test@gmail.com' && this.password.value === 'password12345') {
       localStorage.setItem('isLoggedIn', 'true');
       console.log('Sikeres bejelentkezés!');
       window.location.href = "/home";

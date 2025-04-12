@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
 
 export const routes: Routes = [
     { 
@@ -27,5 +27,5 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent)
     },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', component: HomeComponent } // TODO: ide majd PageNotFoundComponent
+    { path: '**', component: PagenotfoundComponent }
 ];
