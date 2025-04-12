@@ -20,6 +20,7 @@ export class MenuComponent {
 
   logout() {
     localStorage.setItem('isLoggedIn', 'false');
+    this.isLoggedIn = false;
     window.location.href = '/home';
   }
 }

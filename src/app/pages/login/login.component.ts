@@ -27,16 +27,15 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 export class LoginComponent {
   email = new FormControl('');
   password = new FormControl('');
-  loginError: string = '';
-
-  constructor(private router: Router) {}
+  formErrorMessage: string = '';
 
   login() {
     if (this.email.value === 'test@gmail.com' && this.password.value === '12345') {
       localStorage.setItem('isLoggedIn', 'true');
-      this.router.navigateByUrl('/home');
+      console.log('Sikeres bejelentkezés!');
+      window.location.href = "/home";
     } else {
-      this.loginError = "Helytelen email vagy jelszó!";
+      this.formErrorMessage = "Helytelen email vagy jelszó!";
     }
   }
 }

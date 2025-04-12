@@ -16,9 +16,9 @@
                     </mat-form-field>
                     <button mat-flat-button class="login-btn" type="submit">Bejelentkezés</button>
 
-                    @if (loginError) {
+                    @if (formErrorMessage) {
                         <div class="error-message">
-                            {{ loginError }}
+                            {{ formErrorMessage }}
                         </div>
                     }
                 </form>

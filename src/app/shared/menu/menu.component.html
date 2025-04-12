@@ -1,9 +1,9 @@
 <mat-toolbar>
     <span class="company-title" routerLink="/home">ngTravel</span>
     <span class="toolbar-spacer"></span>
-    <!-- TODO: nem jó ez az if bruh -->
     @if (isLoggedIn) {
-        <button mat-button (clicked)="logout()">Kijelentkezés</button>
+        <button mat-button (click)="logout()">Kijelentkezés</button>
+        <button mat-button routerLink="/profile">Profilom</button>
     }
     @if (!isLoggedIn) {
         <button mat-button routerLink="/login">Bejelentkezés</button>

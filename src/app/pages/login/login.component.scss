@@ -35,3 +35,9 @@ a {
     display: block;
     margin-top: 1.25rem;
 }
+
+.error-message {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--mat-sys-error);
+}
