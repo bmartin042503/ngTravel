@@ -6,12 +6,12 @@ mat-toolbar .company-title {
     font-weight: 700;
     font-style: italic;
     color: var(--mat-sys-primary);
+    cursor: pointer;
 }
 
-mat-toolbar span {
+mat-toolbar ul {
     color: var(--mat-sys-on-surface);
     font-size: 1.25rem;
-    cursor: pointer;
 }
 
 .toolbar-spacer {
@@ -20,4 +20,26 @@ mat-toolbar span {
 
 .cart-btn {
     margin-left: 0.75rem;
+}
+
+nav {
+    width: 100%;
+}
+
+nav ul {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+@media (max-width: 560px) {
+    .company-title, .toolbar-spacer {
+        display: none;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
 }

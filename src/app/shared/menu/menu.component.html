@@ -1,16 +1,34 @@
 <mat-toolbar>
     <span class="company-title" routerLink="/home">ngTravel</span>
     <span class="toolbar-spacer"></span>
-    @if (isLoggedIn) {
-        <button mat-button (click)="logout()">Kijelentkezés</button>
-        <button mat-button routerLink="/profile">Profilom</button>
-    }
-    @if (!isLoggedIn) {
-        <button mat-button routerLink="/login">Bejelentkezés</button>
-    }
-    <button mat-button routerLink="/schedule">Menetrend</button>
-    <button mat-button routerLink="/cart" class="cart-btn">
-        <mat-icon class="material-symbols-outlined">shopping_cart</mat-icon>
-        Kosár
-    </button>
+    <nav>
+        <ul>
+            <li><button mat-button routerLink="/home">Jegyfoglalás</button></li>
+            <li>
+                <button mat-button routerLink="/cart" class="cart-btn">
+                    <mat-icon class="material-symbols-outlined cart-nav-icon">shopping_cart</mat-icon>
+                    <span class="nav-text">Kosár</span>
+                </button>
+            </li>
+            @if (isLoggedIn) {
+                <li>
+                    <button mat-button routerLink="/profile">
+                    <span class="nav-text">Profilom</span>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button (click)="logout()">
+                        <span class="nav-text">Kijelentkezés</span>
+                    </button>
+                </li>
+            }
+            @if (!isLoggedIn) {
+                <li>
+                    <button mat-button routerLink="/login">
+                        <span class="nav-text">Bejelentkezés</span>
+                    </button>
+                </li>
+            }
+        </ul>
+    </nav>
 </mat-toolbar>
