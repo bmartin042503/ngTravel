@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { EasydatePipe } from '../../shared/pipes/easydate.pipe';
 import { NgClass } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-schedule',
@@ -17,7 +18,8 @@ import { NgClass } from '@angular/common';
     MatIconModule,
     RouterLink,
     EasydatePipe,
-    NgClass
+    NgClass,
+    MatTooltipModule
   ],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.scss'

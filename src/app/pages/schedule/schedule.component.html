@@ -40,7 +40,7 @@
             <th mat-header-cell *matHeaderCellDef>Jegy ára</th>
             <td mat-cell *matCellDef="let route">
               @if (route.seats.total - route.seats.reserved !== 0 && !isExpired(route)) {
-                <button mat-flat-button class="add-to-cart-btn">
+                <button [matTooltip]="'Kosárhoz adás'" mat-flat-button class="add-to-cart-btn">
                   <span class="route-price">{{ route.price }} Ft</span>
                   <mat-icon class="material-symbols-outlined cart-nav-icon">shopping_cart</mat-icon>
                 </button>
