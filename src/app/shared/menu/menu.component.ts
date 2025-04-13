@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterLink,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatBadgeModule
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss'

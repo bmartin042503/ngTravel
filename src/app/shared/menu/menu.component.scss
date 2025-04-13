@@ -34,6 +34,10 @@ nav ul {
     justify-content: right;
 }
 
+.cart-icon {
+    height: 2rem !important;
+}
+
 @media (max-width: 560px) {
     .company-title, .toolbar-spacer {
         display: none;
