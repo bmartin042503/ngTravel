@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -20,9 +21,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 export class MenuComponent {
   @Input() isLoggedIn = false;
 
+  constructor(private authService: AuthService) {}
+
   logout() {
-    localStorage.setItem('isLoggedIn', 'false');
     this.isLoggedIn = false;
-    window.location.href = '/home';
+    this.authService.signOut();
   }
 }

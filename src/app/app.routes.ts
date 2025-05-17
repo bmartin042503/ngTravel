@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { PagenotfoundComponent } from './pages/pagenotfound/pagenotfound.component';
+import { authGuard, publicGuard } from './guards/auth/auth.guard';
 
 export const routes: Routes = [
     { 
@@ -8,11 +9,13 @@ export const routes: Routes = [
     },
     { 
         path: 'signup',
-        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent)
+        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent),
+        canActivate: [publicGuard]
     },
     { 
         path: 'login',
-        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+        canActivate: [publicGuard]
     },
     { 
         path: 'schedule',
@@ -20,11 +23,13 @@ export const routes: Routes = [
     },
     { 
         path: 'cart',
-        loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent)
+        loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'profile',
-        loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent)
+        loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
+        canActivate: [authGuard]
     },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PagenotfoundComponent }
