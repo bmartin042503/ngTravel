@@ -79,7 +79,25 @@ export class CartComponent implements OnInit {
     });
   }
 
-  goToPayment() {
-    this.router.navigate(['/payment']);
+  get totalPrice(): number {
+    return this.ticketsInCart.reduce((sum, ticket) => sum + ticket.routeData.price, 0);
+  }
+
+  async payAllTickets() {
+    try {
+      await this.ticketService.purchaseTickets(this.userId);
+      this.snackBar.open('Sikeres vásárlás!', 'Bezár', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+      this.ticketsInCart = [];
+    } catch (error) {
+      this.snackBar.open('Hiba történt a vásárlás során', 'Bezár', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+    }
   }
 }

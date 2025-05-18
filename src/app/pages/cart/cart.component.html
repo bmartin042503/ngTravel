@@ -5,21 +5,28 @@
     </mat-card-header>
     <mat-card-content>
         <div *ngIf="loading">Adatok betöltése..</div>
-        <div *ngIf="!loading">
+        <div *ngIf="!loading" class="loaded-content">
             <div *ngIf="ticketsInCart.length > 0; else emptyCart" class="tickets-container">
                 <div *ngFor="let ticket of ticketsInCart" class="ticket-item">
-                <div class="ticket-info">
-                    <div><strong>Indulás:</strong> {{ ticket.routeData.departure.location }}</div>
-                    <div><strong>Érkezés:</strong> {{ ticket.routeData.arrival.location }}</div>
-                    <div><strong>Ár:</strong> {{ ticket.routeData.price }} Ft</div>
+                    <div class="ticket-info">
+                        <div class="ticket-details">
+                            <div><strong>Indulás:</strong> {{ ticket.routeData.departure.location }}</div>
+                            <div><strong>Érkezés:</strong> {{ ticket.routeData.arrival.location }}</div>
+                            <div><strong>Ár:</strong> {{ ticket.routeData.price }} Ft</div>
+                        </div>
+                        <button mat-icon-button color="warn" (click)="removeTicket(ticket)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                    <div *ngIf="ticketsInCart.length > 1">
+                            <hr>
+                    </div>
                 </div>
-                <button mat-icon-button color="warn" (click)="removeTicket(ticket)">
-                    <mat-icon>delete</mat-icon>
-                </button>
+                <div class="total-price" *ngIf="ticketsInCart.length > 0">
+                    <strong>Összesen:</strong> {{ totalPrice }} Ft
                 </div>
-
-                <button mat-flat-button color="primary" (click)="goToPayment()" class="payment-btn">
-                Tovább a fizetéshez
+                <button mat-flat-button color="primary" (click)="payAllTickets()" class="payment-btn">
+                    Fizetés
                 </button>
             </div>
             <ng-template #emptyCart>

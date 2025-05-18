@@ -61,7 +61,7 @@ export class UserService {
       const transactions: Transaction[] = [];
       if(user.transactions && user.transactions.length > 0) {
         const transactionCollection = collection(this.firestore, 'Transactions');
-        const q = query(transactionCollection, where(documentId(), 'in', user.tickets));
+        const q = query(transactionCollection, where(documentId(), 'in', user.transactions));
         const transactionsSnapshot = await getDocs(q);
 
         transactionsSnapshot.forEach(doc => {
