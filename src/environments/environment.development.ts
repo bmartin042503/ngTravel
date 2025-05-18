@@ -1,3 +1,6 @@
+// Kizárólag az SZTE hallgatói/oktatói részére használható az alábbi firebase konfiguráció!
+// The following Firebase configuration is for the exclusive use of SZTE students and faculty only!
+
 export const environment = {
     production: false,
     firebaseConfig: {

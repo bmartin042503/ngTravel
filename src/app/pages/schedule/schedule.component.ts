@@ -5,7 +5,6 @@ import { ScheduleService } from '../../services/schedule.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 import { EasydatePipe } from '../../shared/pipes/easydate.pipe';
 import { NgClass } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -21,7 +20,6 @@ import { firstValueFrom } from 'rxjs';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    RouterLink,
     EasydatePipe,
     NgClass,
     MatTooltipModule
