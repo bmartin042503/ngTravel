@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, doc, getDoc, collection, query, where, getDocs } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, collection, query, where, getDocs, documentId } from '@angular/fire/firestore';
 import { Observable, from, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { switchMap } from 'rxjs/operators';
@@ -61,7 +61,7 @@ export class UserService {
       const transactions: Transaction[] = [];
       if(user.transactions && user.transactions.length > 0) {
         const transactionCollection = collection(this.firestore, 'Transactions');
-        const q = query(transactionCollection, where('id', 'in', user.transactions));
+        const q = query(transactionCollection, where(documentId(), 'in', user.tickets));
         const transactionsSnapshot = await getDocs(q);
 
         transactionsSnapshot.forEach(doc => {
@@ -73,7 +73,7 @@ export class UserService {
       const tickets: Ticket[] = [];
       if(user.tickets && user.tickets.length > 0) {
         const ticketCollection = collection(this.firestore, 'Tickets');
-        const q = query(ticketCollection, where('id', 'in', user.tickets));
+        const q = query(ticketCollection, where(documentId(), 'in', user.tickets));
         const ticketsSnapshot = await getDocs(q);
 
         ticketsSnapshot.forEach(doc => {

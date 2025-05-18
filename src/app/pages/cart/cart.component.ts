@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { TicketService } from '../../services/ticket.service';
 import { CommonModule } from '@angular/common';
 import { firstValueFrom } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 interface TicketWithRouteData extends Ticket {
   routeData: {
@@ -25,6 +26,7 @@ interface TicketWithRouteData extends Ticket {
   imports: [
     MatCardModule,
     MatIconModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     MatButtonModule,
     CommonModule
@@ -33,10 +35,13 @@ interface TicketWithRouteData extends Ticket {
   styleUrl: './cart.component.scss'
 })
 export class CartComponent implements OnInit {
+  constructor(private snackBar: MatSnackBar) {}
+
   private userService = inject(UserService);
   private authService = inject(AuthService);
   private ticketService = inject(TicketService);
   private router = inject(Router);
+  loading: boolean = true;
 
   ticketsInCart: TicketWithRouteData[] = [];
   userId: string = '';
@@ -58,6 +63,7 @@ export class CartComponent implements OnInit {
           routeData
         });
       }
+      this.loading = false;
 
       this.ticketsInCart = enrichedTickets;
     });
@@ -66,6 +72,11 @@ export class CartComponent implements OnInit {
   async removeTicket(ticket: TicketWithRouteData) {
     await this.ticketService.removeTicketFromCart(this.userId, ticket.id);
     this.ticketsInCart = this.ticketsInCart.filter(t => t.id !== ticket.id);
+    this.snackBar.open('Sikeresen törölve a kosárból', 'Bezár', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 
   goToPayment() {

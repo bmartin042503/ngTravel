@@ -4,28 +4,28 @@
       <h1>Kosár</h1>
     </mat-card-header>
     <mat-card-content>
-      <ng-container *ngIf="ticketsInCart.length > 0; else emptyCart">
-        <div *ngFor="let ticket of ticketsInCart" class="ticket-item">
-          <div class="ticket-info">
-            <div><strong>Indulás:</strong> {{ ticket.routeData.departure.location }}</div>
-            <div><strong>Érkezés:</strong> {{ ticket.routeData.arrival.location }}</div>
-            <div><strong>Ár:</strong> {{ ticket.routeData.price }} Ft</div>
-          </div>
-          <button mat-icon-button color="warn" (click)="removeTicket(ticket)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
+        <div *ngIf="loading">Adatok betöltése..</div>
+        <div *ngIf="!loading">
+            <div *ngIf="ticketsInCart.length > 0; else emptyCart" class="tickets-container">
+                <div *ngFor="let ticket of ticketsInCart" class="ticket-item">
+                <div class="ticket-info">
+                    <div><strong>Indulás:</strong> {{ ticket.routeData.departure.location }}</div>
+                    <div><strong>Érkezés:</strong> {{ ticket.routeData.arrival.location }}</div>
+                    <div><strong>Ár:</strong> {{ ticket.routeData.price }} Ft</div>
+                </div>
+                <button mat-icon-button color="warn" (click)="removeTicket(ticket)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                </div>
 
-        <div class="payment-actions">
-          <button mat-flat-button color="primary" (click)="goToPayment()">
-            Tovább a fizetéshez
-          </button>
+                <button mat-flat-button color="primary" (click)="goToPayment()" class="payment-btn">
+                Tovább a fizetéshez
+                </button>
+            </div>
+            <ng-template #emptyCart>
+                <span class="ticket-count">A kosár üres</span>
+            </ng-template>
         </div>
-      </ng-container>
-
-      <ng-template #emptyCart>
-        <span class="ticket-count">A kosár üres</span>
-      </ng-template>
     </mat-card-content>
   </mat-card>
 </div>

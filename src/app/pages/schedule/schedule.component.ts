@@ -9,6 +9,10 @@ import { RouterLink } from '@angular/router';
 import { EasydatePipe } from '../../shared/pipes/easydate.pipe';
 import { NgClass } from '@angular/common';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { TicketService } from '../../services/ticket.service';
+import { AuthService } from '../../services/auth.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-schedule',
@@ -16,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatTableModule,
     MatButtonModule,
     MatIconModule,
+    MatSnackBarModule,
     RouterLink,
     EasydatePipe,
     NgClass,
@@ -36,8 +41,34 @@ export class ScheduleComponent implements OnInit {
     'seats', 
     'price',
   ];
+  loading: boolean = true;
 
-  constructor(private scheduleService: ScheduleService, private route: ActivatedRoute) {}
+  constructor(
+    private scheduleService: ScheduleService, 
+    private route: ActivatedRoute,
+    private ticketService: TicketService,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) {}
+
+  async addToCart(route: BusRoute & { availableSeats: number }) {
+    if (route.availableSeats > 0 && !this.isExpired(route)) {
+      try {
+        const user = await firstValueFrom(this.authService.currentUser);
+        if (!user) {
+          throw new Error('Nincs bejelentkezett felhasználó.');
+        }
+        await this.ticketService.addTicketToCart(user.uid, route.id!);
+        this.snackBar.open('Sikeresen hozzáadva a kosárhoz', 'Bezár', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+      } catch (error) {
+        console.error('Hiba a kosárhoz adáskor:', error);
+      }
+    }
+  }
 
   async ngOnInit() {
     const allRoutes = await this.scheduleService.getAllRoutes();
@@ -48,6 +79,8 @@ export class ScheduleComponent implements OnInit {
         return { ...route, availableSeats };
       })
     );
+
+    this.loading = false;
 
     this.route.queryParams.subscribe(params => {
       const from = params['from'];

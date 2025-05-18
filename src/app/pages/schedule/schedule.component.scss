@@ -10,7 +10,7 @@ h1 {
 }
 
 .schedule-content {
-    margin: 0 2.5rem;
+    margin: 2.5rem;
     overflow-y: auto;
     max-height: 85%;
     border-radius: 0.75rem;
@@ -40,6 +40,11 @@ h1 {
 
 .no-available-seats {
     color: var(--mat-sys-error);
+}
+
+.loading-label {
+    display: block;
+    text-align: center;
 }
 
 @media (max-width: 800px) {
