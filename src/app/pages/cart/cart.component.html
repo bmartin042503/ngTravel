@@ -1,11 +1,31 @@
 <div class="content">
-    <mat-card>
-        <mat-card-header>
-            <h1>Kosár</h1>
-        </mat-card-header>
-        <mat-card-content>
-            <span class="ticket-count">A kosár üres</span>
-            <button mat-flat-button>Tovább a fizetéshez</button>
-        </mat-card-content>
-    </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <h1>Kosár</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <ng-container *ngIf="ticketsInCart.length > 0; else emptyCart">
+        <div *ngFor="let ticket of ticketsInCart" class="ticket-item">
+          <div class="ticket-info">
+            <div><strong>Indulás:</strong> {{ ticket.routeData.departure.location }}</div>
+            <div><strong>Érkezés:</strong> {{ ticket.routeData.arrival.location }}</div>
+            <div><strong>Ár:</strong> {{ ticket.routeData.price }} Ft</div>
+          </div>
+          <button mat-icon-button color="warn" (click)="removeTicket(ticket)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <div class="payment-actions">
+          <button mat-flat-button color="primary" (click)="goToPayment()">
+            Tovább a fizetéshez
+          </button>
+        </div>
+      </ng-container>
+
+      <ng-template #emptyCart>
+        <span class="ticket-count">A kosár üres</span>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
 </div>

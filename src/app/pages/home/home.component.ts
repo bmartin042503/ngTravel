@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { SCHEDULE_DATA } from '../../shared/constants/busroutes';
+import { BusRoute } from '../../shared/models/BusRoute';
 
 @Component({
   standalone: true,
@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
   locations: string[] = [];
 
   constructor(private router: Router) {
-    const cities = SCHEDULE_DATA.flatMap(route => [
+    const scheduleData: BusRoute[] = [];
+    const cities = scheduleData.flatMap(route => [
       route.departure.location,
       route.arrival.location
     ]);

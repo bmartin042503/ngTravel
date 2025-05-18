@@ -3,15 +3,12 @@ export interface BusRoute {
     routeNumber: number;
     departure: {
         location: string;
-        time: Date;
+        time: string;
     }
     arrival: {
         location: string;
-        time: Date;
+        time: string;
     }
-    seats: {
-        total: number;
-        reserved: number;
-    }
+    seats: number;
     price: number;
 }

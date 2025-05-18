@@ -31,6 +31,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent),
         canActivate: [authGuard]
     },
+    {
+        path: 'payment',
+        loadComponent: () => import('./pages/payment/payment.component').then(m => m.PaymentComponent),
+        canActivate: [authGuard]
+    },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PagenotfoundComponent }
 ];

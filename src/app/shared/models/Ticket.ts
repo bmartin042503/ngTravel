@@ -1,13 +1,10 @@
-import { BusRoute } from "./BusRoute";
-
-export enum TicketStatus {
-    InCart, // kosárban lévő buszjegy
-    Ready, // felhasználásra váró buszjegy, vásárlás után (ez már le van foglalva)
-    Used // felhasznált buszjegy
-}
+// status
+// InCart - kosárban lévő jegy
+// Ready - megvásárolt, felhasználásra váró jegy
+// Expired - felhasznált vagy lejárt jegy
 
 export interface Ticket {
     id: string;
-    route: BusRoute;
-    status: TicketStatus;
+    route: string;
+    status: string;
 }

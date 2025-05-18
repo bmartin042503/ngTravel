@@ -1,15 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'easydate'
+  name: 'easydate',
+  standalone: true
 })
 export class EasydatePipe implements PipeTransform {
 
-  transform(date: Date, format: string = 'yyyy-MM-dd HH:mm'): string {
-    if (!date) return '';
+  transform(dateInput: Date | string | null | undefined, format: string = 'yyyy-MM-dd HH:mm'): string {
+    if (!dateInput) return '';
 
-    const d = new Date(date);
-    if (isNaN(d.getTime())) return 'Helytelen formátum';
+    const d = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
+
+    if (!(d instanceof Date) || isNaN(d.getTime())) {
+      return 'Helytelen formátum';
+    }
 
     const yyyy = d.getFullYear();
     const MM = this.padZero(d.getMonth() + 1);

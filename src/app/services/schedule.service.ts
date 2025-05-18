@@ -1,16 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Firestore, collection, getDocs, getDoc, doc, query, where } from '@angular/fire/firestore'; 
 import { BusRoute } from '../shared/models/BusRoute';
-import { SCHEDULE_DATA } from '../shared/constants/busroutes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScheduleService {
 
-  constructor() { }
+  constructor(private firestore: Firestore) { }
 
-  getRoutes(): Observable<BusRoute[]> {
-    return of(SCHEDULE_DATA);
+  async getAllRoutes(): Promise<BusRoute[]> {
+    const routesRef = collection(this.firestore, 'BusRoutes');
+    const snapshot = await getDocs(routesRef);
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    } as BusRoute));
+  }
+
+  // elérhető férőhelyek visszaadása
+  // a járatra jegyett váltott felhasználók és a járat férőhelye alapján
+  async getAvailableSeatsForRoute(routeId: string) : Promise<number> {
+    const routeRef = doc(this.firestore, 'BusRoutes', routeId);
+    const routeSnap = await getDoc(routeRef);
+
+    if(!routeSnap.exists()) {
+      throw new Error("A megadott járat nem létezik");
+    }
+
+    const routeData = routeSnap.data();
+    const totalSeats = routeData['seats'];
+
+    const ticketsRef = collection(this.firestore, 'Tickets');
+    const q = query(
+      ticketsRef,
+      where('route', '==', routeId),
+      where('status', '==', 'Ready')
+    );
+    const ticketSnap = await getDocs(q);
+    const bookedSeats = ticketSnap.size;
+
+    return totalSeats - bookedSeats;
   }
 }

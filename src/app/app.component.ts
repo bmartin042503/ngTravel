@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
 import { AuthService } from './services/auth.service';
+import { SeedService } from './services/seed.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   private authSubscription?: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private seedService: SeedService) {}
 
   ngOnInit(): void {
     this.authSubscription = this.authService.currentUser.subscribe(user => {

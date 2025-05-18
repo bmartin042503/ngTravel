@@ -1,25 +1,26 @@
 <div class="content">
-    <mat-card>
-        <mat-card-header>
-            <span class="card-title">Profilom</span>
-        </mat-card-header>
-        <mat-card-content>
-            <span class="transaction-title">Tranzakciók</span>
-            @if (usersData[0].transactions.length > 0) {
-                <mat-list class="transactions">
-                    @for (transaction of usersData[0].transactions; track transaction.id) {
-                        <mat-list-item>
-                            <div class="transaction-content">
-                                <span class="transaction-timestamp">{{ transaction.timestamp | easydate:'yyyy-MM-dd HH:mm' }}</span>
-                                <span class="transaction-details">{{ transaction.info }}</span>
-                                <span class="transaction-amount">{{ transaction.paidAmount }} Ft</span>
-                            </div>
-                        </mat-list-item>
-                    }
-                </mat-list>
-            } @else {
-                <span>Nincsenek tranzakciók.</span>
-            }
-        </mat-card-content>
-    </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <span class="card-title">Profilom</span>
+    </mat-card-header>
+    <mat-card-content>
+      <span class="transaction-title">Tranzakciók</span>
+
+      @if (transactions.length > 0) {
+        <mat-list class="transactions">
+          @for (transaction of transactions; track transaction.id) {
+            <mat-list-item>
+              <div class="transaction-content">
+                <span class="transaction-timestamp">{{ transaction.timestamp | easydate:'yyyy-MM-dd HH:mm' }}</span>
+                <span class="transaction-details">{{ transaction.info }}</span>
+                <span class="transaction-amount">{{ transaction.paidAmount }} Ft</span>
+              </div>
+            </mat-list-item>
+          }
+        </mat-list>
+      } @else {
+        <span>Nincsenek tranzakciók.</span>
+      }
+    </mat-card-content>
+  </mat-card>
 </div>

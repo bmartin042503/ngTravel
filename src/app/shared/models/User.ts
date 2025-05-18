@@ -1,6 +1,3 @@
-import { Ticket } from "./Ticket";
-import { Transaction } from "./Transaction";
-
 export interface User {
     id: string;
     name: {
@@ -8,7 +5,6 @@ export interface User {
         lastName: string;
     };
     email: string;
-    password: string;
-    tickets: Ticket[];
-    transactions: Transaction[];
+    tickets: string[];
+    transactions: string[];
 }

@@ -23,3 +23,15 @@ h1 {
 .ticket-count {
     margin-bottom: 1.5rem;
 }
+
+.ticket-item {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ticket-info div {
+    margin-bottom: 0.5rem;
+}

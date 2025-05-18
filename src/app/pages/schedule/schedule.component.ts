@@ -26,8 +26,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class ScheduleComponent implements OnInit {
   scheduleTitle: string = '';
-
-  routes: BusRoute[] = [];
+  routes: (BusRoute & { availableSeats: number })[] = [];
   displayedColumns: string[] = [
     'route-number', 
     'departure', 
@@ -40,22 +39,29 @@ export class ScheduleComponent implements OnInit {
 
   constructor(private scheduleService: ScheduleService, private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    this.scheduleService.getRoutes().subscribe((data) => {
-      this.route.queryParams.subscribe(params => {
-        const from = params['from'];
-        const to = params['to'];
+  async ngOnInit() {
+    const allRoutes = await this.scheduleService.getAllRoutes();
 
-        if (from && to) {
-          this.routes = data.filter(route => 
-            route.departure.location.toLowerCase() === from.toLowerCase() &&
-            route.arrival.location.toLowerCase() === to.toLowerCase()
-          );
-          this.scheduleTitle = from + " - " + to
-        } else {
-          this.routes = data;
-        }
-      });
+    const routesWithSeats = await Promise.all(
+      allRoutes.map(async route => {
+        const availableSeats = await this.scheduleService.getAvailableSeatsForRoute(route.id!);
+        return { ...route, availableSeats };
+      })
+    );
+
+    this.route.queryParams.subscribe(params => {
+      const from = params['from'];
+      const to = params['to'];
+
+      if (from && to) {
+        this.routes = routesWithSeats.filter(route => 
+          route.departure.location.toLowerCase() === from.toLowerCase() &&
+          route.arrival.location.toLowerCase() === to.toLowerCase()
+        );
+        this.scheduleTitle = `${from} - ${to}`;
+      } else {
+        this.routes = routesWithSeats;
+      }
     });
   }
 
@@ -63,7 +69,7 @@ export class ScheduleComponent implements OnInit {
     return new Date() > new Date(route.departure.time);
   }
 
-  isNoAvailableSeats(route: BusRoute): boolean {
-    return route.seats.total - route.seats.reserved === 0;
+  isNoAvailableSeats(route: BusRoute & { availableSeats: number }): boolean {
+    return route.availableSeats === 0;
   }
 }
